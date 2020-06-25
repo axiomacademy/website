@@ -1,24 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Roboto:wght@400;500&display=swap');
 
 :root {
   font-size: 12px;
 }
 
+html {
+  box-sizing: border-box;
+}
+
 #container {
   background: rgb(121,56,216);
   background: linear-gradient(315deg, rgba(121,56,216,1) 0%, rgba(73,20,150,1) 100%);
-
-  width: 100vw;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-h1 {
+#logomark {
   font-family: 'IBM Plex Sans', sans-serif;
   color: #ffffff;
   font-size: 10rem;
+}
+
+header {  
+  color: white;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+h2 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #ffffff;
+}
+
+a {
+  font-family: 'Roboto', sans-serif;
+}
+
+.rotate {
+  animation: rotation 10s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.icon-effect {
+  transition: all .2s ease-in-out;
+}
+
+.icon-effect:hover {
+  transform: scale(1.2, 1.2);
 }

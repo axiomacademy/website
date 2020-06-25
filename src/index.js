@@ -14,8 +14,8 @@ cubeOne.timeline(timeline)
 cubeTwo.timeline(timeline)
 
 if(animate) {
-  cubeTwo.animate(5000, 0, "absolute").ease("-").move(-60, 28).loop(0, true)
-  cubeOne.animate(5000, 0, "absolute").ease("-").move(60, -28).loop(0, true)
+  cubeTwo.animate(10000, 0, "absolute").ease("-").move(-60, 28).loop(0, true)
+  cubeOne.animate(10000, 0, "absolute").ease("-").move(60, -28).loop(0, true)
 }
 
 for (let line of lines){
@@ -23,11 +23,10 @@ for (let line of lines){
   line.timeline(timeline)
   
   if(animate) {
-    line.animate(5000, 0, "absolute").ease("-").attr('x1', line.attr('x2')).loop(0, true)
-    line.animate(5000, 0, "absolute").ease("-").attr('y1', line.attr('y2')).loop(0, true)
-    line.animate(5000, 0, "absolute").ease("-").attr('x2', line.attr('x1')).loop(0, true)
-    line.animate(5000, 0, "absolute").ease("-").attr('y2', line.attr('y1')).loop(0, true)
+    line.animate(10000, 0, "absolute").ease("-").attr('x1', line.attr('x2')).loop(0, true)
+    line.animate(10000, 0, "absolute").ease("-").attr('y1', line.attr('y2')).loop(0, true)
+    line.animate(10000, 0, "absolute").ease("-").attr('x2', line.attr('x1')).loop(0, true)
+    line.animate(10000, 0, "absolute").ease("-").attr('y2', line.attr('y1')).loop(0, true)
   }
 }
 
-timeline.stop()
