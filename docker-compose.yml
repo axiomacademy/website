@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+    axiom-website:
+        build: .
+        restart: always
+        expose:
+         - "80"
+        networks:
+         - proxy
+         - default
+        labels:
+         - "traefik.backend=axiom-website"
+         - "traefik.docker.network=proxy"
+         - "traefik.basic.frontend.rule=Host:axiom.academy"
+         - "traefik.enable=true"
+         - "traefik.basic.port=80"
+         - "traefik.fallback.frontend.rule=Host:www.axiom.academy"
+         - "traefik.fallback.port=80"
+
+
+networks:
+    proxy:
+        external: true

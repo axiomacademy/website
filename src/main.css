@@ -6,6 +6,25 @@
 
 html {
   box-sizing: border-box;
+  overscroll-behavior: none;
+  background: rgb(121,56,216);
+  background: linear-gradient(315deg, rgba(121,56,216,1) 0%, rgba(73,20,150,1) 100%);
+}
+
+html::selection {
+  background: #ffffff; /* WebKit/Blink Browsers */
+  color: rgb(121,56,216);
+}
+
+html::-moz-selection {
+  background: #ffffff; /* WebKit/Blink Browsers */
+  color: rgb(121,56,216);
+}
+
+body {
+  overscroll-behavior: none;
+  background: rgb(121,56,216);
+  background: linear-gradient(315deg, rgba(121,56,216,1) 0%, rgba(73,20,150,1) 100%);
 }
 
 #container {
