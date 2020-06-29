@@ -2,6 +2,11 @@
 
 :root {
   font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.font-body {
+  font-family: 'Roboto', sans-serif;
 }
 
 html {
@@ -27,6 +32,14 @@ body {
   background: linear-gradient(315deg, rgba(121,56,216,1) 0%, rgba(73,20,150,1) 100%);
 }
 
+.button-light{
+  background-color: rgba(121,56,216,1);
+}
+
+.secondary-color {
+  background-color: rgba(73,20,150,1);
+}
+
 #container {
   background: rgb(121,56,216);
   background: linear-gradient(315deg, rgba(121,56,216,1) 0%, rgba(73,20,150,1) 100%);
@@ -48,10 +61,9 @@ h2 {
   color: #ffffff;
 }
 
-a {
-  font-family: 'Roboto', sans-serif;
+.overlay {
+  background-color: rgba(0, 0, 0, 0.10);
 }
-
 .rotate {
   animation: rotation 10s infinite linear;
 }
