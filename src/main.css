@@ -9,6 +9,13 @@
   font-family: 'Roboto', sans-serif;
 }
 
+input[type=text] {   
+  /* Remove First */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 html {
   box-sizing: border-box;
   overscroll-behavior: none;
