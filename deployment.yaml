@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: axiom-website
+  labels:
+    app: axiom-website
 spec:
   selector:
     matchLabels:
