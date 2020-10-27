@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: axiom-website
+spec:
+  selector:
+    matchLabels:
+      app: axiom-website
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: axiom-website
+    spec:
+      containers:
+      - name: axiom-website
+        image: registry.digitalocean.com/athens/axiom-website:latest
+        ports:
+        - name: web
+          containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: axiom-website
+
+spec:
+  ports:
+    - protocol: TCP
+      name: web
+      port: 80
+  selector:
+    app: axiom-website
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: axiom-website-route
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`axiom.academy`)
+    kind: Rule
+    services:
+    - name: axiom-website
+      port: 80
+  tls:
+    certResolver: myresolver
