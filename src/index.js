@@ -1,8 +1,10 @@
-import { SVG, Timeline } from '@svgdotjs/svg.js'
+// import { SVG, Timeline } from '@svgdotjs/svg.js'
+import Two from 'two.js'
+import Tesseract from './tesseract.js'
 
 // Binding openmodal button
-var openmodal = document.querySelectorAll('.modal-open')
-for (var i = 0; i < openmodal.length; i++) {
+let openmodal = document.querySelectorAll('.modal-open')
+for (let i = 0; i < openmodal.length; i++) {
   openmodal[i].addEventListener('click', function(event){
   event.preventDefault()
   toggleModal()
@@ -19,15 +21,15 @@ const overlay = document.querySelector('.modal-overlay')
 overlay.addEventListener('click', toggleModal)
 
 // Enable close button
-var closemodal = document.querySelectorAll('.modal-close')
-for (var i = 0; i < closemodal.length; i++) {
+let closemodal = document.querySelectorAll('.modal-close')
+for (let i = 0; i < closemodal.length; i++) {
   closemodal[i].addEventListener('click', toggleModal)
 }
 
 // Enable escape close
 document.onkeydown = function(evt) {
   evt = evt || window.event
-  var isEscape = false
+  let isEscape = false
   if ("key" in evt) {
     isEscape = (evt.key === "Escape" || evt.key === "Esc")
   } else {
@@ -77,36 +79,6 @@ document.querySelector('#mc-form').onsubmit = () => {
   toggleModal()
 }
 
-// Handling annimation feature
-let logo = SVG("#logo")
-const timeline = new Timeline()
-const animate = true;
-
-// Separating SVG groups
-let cubeOne = logo.find("#cube-1")
-let cubeTwo = logo.find("#cube-2")
-let lines = logo.find("#interconnect").children()[0]
-
-// Associating components with timeline
-cubeOne.timeline(timeline)
-cubeTwo.timeline(timeline)
-
-if(animate) {
-  cubeTwo.animate(10000, 0, "absolute").ease("-").move(-60, 28).loop(0, true)
-  cubeOne.animate(10000, 0, "absolute").ease("-").move(60, -28).loop(0, true)
-}
-
-for (let line of lines){
-  line.timeline(timeline)
-  
-  if(animate) {
-    line.animate(10000, 0, "absolute").ease("-").attr('x1', line.attr('x2')).loop(0, true)
-    line.animate(10000, 0, "absolute").ease("-").attr('y1', line.attr('y2')).loop(0, true)
-    line.animate(10000, 0, "absolute").ease("-").attr('x2', line.attr('x1')).loop(0, true)
-    line.animate(10000, 0, "absolute").ease("-").attr('y2', line.attr('y1')).loop(0, true)
-  }
-}
-
 function toggleModal () {
   const body = document.querySelector('body')
   const modal = document.querySelector('.modal')
@@ -114,3 +86,18 @@ function toggleModal () {
   modal.classList.toggle('pointer-events-none')
   body.classList.toggle('modal-active')
 }
+
+/*
+ * New mathematical animation attempt
+ */
+
+const SCALE_FACTOR = 40
+const MOVEX_FACTOR = 75
+const MOVEY_FACTOR = 75
+const PERIOD = 10
+
+tesseract = new Tesseract(SCALE_FACTOR, MOVEX_FACTOR, MOVEY_FACTOR, PERIOD)
+tesseract.draw()
+tesseract.animate()
+
+console.log("hello")
