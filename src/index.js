@@ -93,11 +93,10 @@ function toggleModal () {
 
 const SCALE_FACTOR = 40
 const MOVEX_FACTOR = 75
-const MOVEY_FACTOR = 75
+const MOVEY_FACTOR = 100
 const PERIOD = 10
 
 tesseract = new Tesseract(SCALE_FACTOR, MOVEX_FACTOR, MOVEY_FACTOR, PERIOD)
-tesseract.draw()
 tesseract.animate()
 
 console.log("hello")

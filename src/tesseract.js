@@ -1,4 +1,5 @@
 import Two from 'two.js'
+import anime from 'animejs/lib/anime.es.js';
 
 export default class Tesseract {
   // period in seconds
@@ -17,7 +18,7 @@ export default class Tesseract {
 
     // Initialise two.js
     let elem = document.getElementById('tesseract');
-    let params = { width: 150, height: 150 };
+    let params = { width: 150, height: 200 };
     this.two = new Two(params).appendTo(elem);
   }
 
@@ -59,42 +60,42 @@ export default class Tesseract {
 
   draw() {
     let p_0000 = this.getPointProjection(-1, -1, -1, -1)
-    // let p_0001 = this.getPointProjection(-1, -1, -1, 1)
-    // let p_0010 = this.getPointProjection(-1, -1, 1, -1)
-    // let p_0011 = this.getPointProjection(-1, -1, 1, 1)
+    let p_0001 = this.getPointProjection(-1, -1, -1, 1)
+    let p_0010 = this.getPointProjection(-1, -1, 1, -1)
+    let p_0011 = this.getPointProjection(-1, -1, 1, 1)
     let p_0100 = this.getPointProjection(-1, 1, -1, -1)
-    // let p_0101 = this.getPointProjection(-1, 1, -1, 1)
-    // let p_0110 = this.getPointProjection(-1, 1, 1, -1)
-    // let p_0111 = this.getPointProjection(-1, 1, 1, 1)
+    let p_0101 = this.getPointProjection(-1, 1, -1, 1)
+    let p_0110 = this.getPointProjection(-1, 1, 1, -1)
+    let p_0111 = this.getPointProjection(-1, 1, 1, 1)
     let p_1000 = this.getPointProjection(1, -1, -1, -1)
-    // let p_1001 = this.getPointProjection(1, -1, -1, 1)
-    // let p_1010 = this.getPointProjection(1, -1, 1, -1)
-    // let p_1011 = this.getPointProjection(1, -1, 1, 1)
+    let p_1001 = this.getPointProjection(1, -1, -1, 1)
+    let p_1010 = this.getPointProjection(1, -1, 1, -1)
+    let p_1011 = this.getPointProjection(1, -1, 1, 1)
     let p_1100 = this.getPointProjection(1, 1, -1, -1)
-    // let p_1101 = this.getPointProjection(1, 1, -1, 1)
-    // let p_1110 = this.getPointProjection(1, 1, 1, -1)
-    // let p_1111 = this.getPointProjection(1, 1, 1, 1)
+    let p_1101 = this.getPointProjection(1, 1, -1, 1)
+    let p_1110 = this.getPointProjection(1, 1, 1, -1)
+    let p_1111 = this.getPointProjection(1, 1, 1, 1)
     
     // Actually drawing the rectangles
     this.makeRectangle(p_0000, p_1000, p_1100, p_0100)
-    // this.makeRectangle(p_0010, p_1010, p_1110, p_0110)
-    // this.makeRectangle(p_0011, p_1011, p_1111, p_0111)
-    // this.makeRectangle(p_0001, p_1001, p_1101, p_0101)
-    // this.makeRectangle(p_0000, p_0010, p_1010, p_1000)
-    // this.makeRectangle(p_1100, p_1110, p_0110, p_0100)
-    // this.makeRectangle(p_1101, p_1111, p_0111, p_0101)
-    // this.makeRectangle(p_1001, p_1011, p_0011, p_0001)
-    // this.makeRectangle(p_1000, p_1001, p_0001, p_0000)
-    // this.makeRectangle(p_1100, p_1101, p_0101, p_0100)
-    // this.makeRectangle(p_1111, p_1110, p_0110, p_0111)
-    // this.makeRectangle(p_1011, p_1010, p_0010, p_0011)
+    this.makeRectangle(p_0010, p_1010, p_1110, p_0110)
+    this.makeRectangle(p_0011, p_1011, p_1111, p_0111)
+    this.makeRectangle(p_0001, p_1001, p_1101, p_0101)
+    this.makeRectangle(p_0000, p_0010, p_1010, p_1000)
+    this.makeRectangle(p_1100, p_1110, p_0110, p_0100)
+    this.makeRectangle(p_1101, p_1111, p_0111, p_0101)
+    this.makeRectangle(p_1001, p_1011, p_0011, p_0001)
+    this.makeRectangle(p_1000, p_1001, p_0001, p_0000)
+    this.makeRectangle(p_1100, p_1101, p_0101, p_0100)
+    this.makeRectangle(p_1111, p_1110, p_0110, p_0111)
+    this.makeRectangle(p_1011, p_1010, p_0010, p_0011)
 
     // Don't forget to tell two to render everything
     // to the screen
     this.two.update();
   }
 
-  // T is between 0 and 2pi
+  // T is between 0 and 
   updateRotation(t) {
     this.r_wx = Math.atan(Math.sqrt(5)/3) - t
     this.r_wy = Math.atan(3/5) - t
@@ -104,31 +105,24 @@ export default class Tesseract {
   }
 
   animate() {
-    let frameperiod = 60 * this.period
-    let framedelay = 0.1 * frameperiod
+    let animatable = {
+      rotation: 0
+    }
 
-    let delaystart = (frameperiod - framedelay) / 2
-    let delayend = (frameperiod + framedelay) / 2
-     
-    // Initial t
-    let t = 0
-    let tincrement = Math.PI / ((frameperiod - framedelay) / 2)
-
-    // Called about 60 times a second
-    let motion = this.two.bind('update', function(frameCount) {
-      let frame = frameCount % frameperiod
-
-      if(frame < delaystart) {
-        t += tincrement
-      } else if (frame > delayend) {
-        t -= tincrement
-      }
-
-      this.updateRotation(t)
-      this.two.clear()
-      
-    }.bind(this))// Finally, start the animation loop
-    
-    motion.play()
+    anime({
+      targets: animatable,
+      keyframes: [
+        {rotation: 0, duration: 1000},
+        {rotation: 2 * Math.PI, duration: 20000},
+      ],
+      loop: true,
+      easing: 'easeInOutSine',
+      update: function() {
+        console.log(animatable.rotation)
+        this.updateRotation(animatable.rotation)
+        this.two.clear()
+        this.draw()
+      }.bind(this)
+    })
   }
 }
